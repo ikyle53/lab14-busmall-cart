@@ -31,31 +31,39 @@ function handleSubmit(event) {
   addSelectedItemToCart();
   cart.saveToLocalStorage();
   updateCounter(cart);
-  updateCartPreview();
+  updateCartPreview(cart);
 
 }
 
-// TODO: Add the selected item and quantity to the cart
+// DONE: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
-  // TODO: suss out the item picked from the select list
+  // DONE: suss out the item picked from the select list
   let product = document.getElementById('items').value;
   console.log(product)
-  // TODO: get the quantity
+  // DONE: get the quantity
   let quantity = document.getElementById('quantity').value;
-  // TODO: using those, add one item to the Cart
+  // DONE: using those, add one item to the Cart
   cart.addItem(product, quantity);
 }
 
-// TODO: Update the cart count in the header nav with the number of items in the Cart
+// DONE: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter(cart) {
   let counter = document.getElementById('itemCount');
   counter.textContent = cart.items.length;
 }
 
-// TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
-function updateCartPreview() {
-  // TODO: Get the item and quantity from the form
-  // TODO: Add a new element to the cartContents div with that information
+// DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
+function updateCartPreview(cart) {
+  let cartPreview = document.getElementById('cartContents');
+  let para = document.createElement('p');
+  console.log(cart);
+  // DONE: Get the item and quantity from the form
+ for (let i = 0; i < cart.items.length; i++) {  
+   let items = cart.items[i];
+   para.innerText = `Item: ${items.product} Quantity: ${items.quantity}`;
+   cartPreview.appendChild(para);
+ }
+  // DONE: Add a new element to the cartContents div with that information
 }
 
 // Set up the "submit" event listener on the form.
